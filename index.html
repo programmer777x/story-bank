@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#151412" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,650&display=swap" rel="stylesheet" />
+  <title>Story Bank Website</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f4f1ea;
+      --paper-2: #eae5dc;
+      --ink: #171714;
+      --muted: #625f58;
+      --line: #c8c1b5;
+      --card: #fbf9f4;
+      --red: #c33d2f;
+      --red-soft: #f0d8d2;
+      --teal: #1f6c68;
+      --teal-soft: #d7e6e1;
+      --amber: #bd741d;
+      --shadow: 0 18px 50px rgba(43, 36, 27, .09);
+      --sans: "IBM Plex Sans", ui-sans-serif, sans-serif;
+      --serif: "Newsreader", Georgia, serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #151412;
+        --paper-2: #201e1b;
+        --ink: #f4f0e8;
+        --muted: #b7b0a6;
+        --line: #3c3933;
+        --card: #1b1a17;
+        --red: #f06c5e;
+        --red-soft: #482a25;
+        --teal: #68b8af;
+        --teal-soft: #203c39;
+        --amber: #e8a251;
+        --shadow: 0 20px 60px rgba(0, 0, 0, .28);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 32px,
+        var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.55;
+    }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    a { color: inherit; }
+    svg { display: block; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .skip-link { position: fixed; left: 12px; top: -80px; z-index: 50; padding: 10px 14px; background: var(--ink); color: var(--paper); }
+    .skip-link:focus { top: 12px; }
+
+    .mast {
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .mast-inner { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .section-mark { display: flex; align-items: center; gap: 10px; font: 500 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .section-mark::before { content: ""; width: 28px; height: 3px; background: var(--red); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .nav-link, .mode-button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 9px 10px;
+      text-decoration: none;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .nav-link:hover, .mode-button:hover { color: var(--ink); }
+    .mode-button { border: 1px solid var(--line); background: var(--card); color: var(--ink); }
+    .mode-button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+    .hero { padding: 78px 0 52px; border-bottom: 1px solid var(--line); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(300px, .75fr); gap: 72px; align-items: end; }
+    .hero-kicker { margin: 0 0 20px; font: 500 12px/1.4 var(--mono); color: var(--red); text-transform: uppercase; letter-spacing: .09em; }
+    h1 { font: 650 clamp(52px, 8vw, 100px)/.9 var(--serif); letter-spacing: -.045em; max-width: 780px; margin: 0; }
+    .hero-copy { margin: 28px 0 0; max-width: 630px; font-size: clamp(17px, 2vw, 21px); color: var(--muted); }
+    .index-card { background: var(--ink); color: var(--paper); padding: 24px; box-shadow: 10px 10px 0 var(--red); transform: rotate(1deg); }
+    .index-card-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 18px; border-bottom: 1px solid color-mix(in srgb, var(--paper) 24%, transparent); font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .index-card-head span:last-child { color: var(--red); }
+    .index-list { list-style: none; margin: 0; padding: 8px 0 0; }
+    .index-list li { display: grid; grid-template-columns: 26px 1fr auto; gap: 9px; align-items: center; padding: 14px 0; border-bottom: 1px solid color-mix(in srgb, var(--paper) 18%, transparent); font-size: 13px; }
+    .index-list .num { color: var(--red); font-family: var(--mono); }
+    .index-list .kind { color: color-mix(in srgb, var(--paper) 62%, transparent); font: 400 10px/1 var(--mono); text-transform: uppercase; }
+
+    .tool-row { padding: 24px 0; border-bottom: 1px solid var(--line); background: var(--paper); }
+    .tools { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .filter-set { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter-button { border: 1px solid var(--line); background: transparent; color: var(--muted); padding: 9px 14px; cursor: pointer; font-size: 13px; }
+    .filter-button[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: white; }
+    .record-count { margin: 0; color: var(--muted); font: 400 12px/1.4 var(--mono); }
+
+    .stories { padding: 48px 0 80px; display: grid; gap: 42px; }
+    .story { background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .story[hidden] { display: none; }
+    .story-head { display: grid; grid-template-columns: 110px minmax(0, 1fr) 290px; }
+    .story-number { border-right: 1px solid var(--line); padding: 28px 18px; font: 500 12px/1.25 var(--mono); color: var(--muted); }
+    .story-number strong { display: block; font: 650 54px/1 var(--serif); color: var(--red); margin-bottom: 10px; }
+    .story-title { padding: 30px 34px; }
+    .story-title .meta { margin: 0 0 10px; color: var(--muted); font: 500 11px/1.3 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .story-title h2 { margin: 0; font: 650 clamp(31px, 4vw, 50px)/1 var(--serif); letter-spacing: -.025em; }
+    .story-title .lede { margin: 16px 0 0; color: var(--muted); max-width: 700px; font-size: 16px; }
+    .story-outcome { padding: 30px 26px; border-left: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between; gap: 18px; background: var(--paper-2); }
+    .outcome-label { font: 500 11px/1 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .07em; }
+    .outcome-big { font: 650 26px/1.1 var(--serif); margin-top: 8px; }
+    .tags { display: flex; gap: 7px; flex-wrap: wrap; }
+    .tag { border: 1px solid var(--line); padding: 5px 8px; font: 400 10px/1 var(--mono); color: var(--muted); }
+
+    .story-visual { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 28px 34px; background: var(--paper); }
+    .sequence { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr 40px 1fr; align-items: stretch; }
+    .seq-node { min-height: 108px; border: 1px solid var(--line); padding: 16px; background: var(--card); display: flex; flex-direction: column; justify-content: space-between; }
+    .seq-node strong { font: 600 14px/1.25 var(--sans); }
+    .seq-node span { margin-top: 12px; color: var(--muted); font: 400 10px/1.35 var(--mono); }
+    .seq-node.is-accent { background: var(--teal-soft); border-color: var(--teal); }
+    .sequence-arrow { display: grid; place-items: center; color: var(--red); font: 500 20px/1 var(--mono); }
+
+    .story-body { padding: 0 34px; }
+    .star-row { display: grid; grid-template-columns: 62px minmax(0, 1fr); border-bottom: 1px solid var(--line); }
+    .star-row:last-child { border-bottom: 0; }
+    .star-letter { font: 650 38px/1 var(--serif); color: var(--red); padding: 28px 0; }
+    .star-copy { border-left: 1px solid var(--line); padding: 27px 0 28px 28px; }
+    .star-copy h3 { margin: 0 0 9px; font: 600 13px/1 var(--mono); text-transform: uppercase; letter-spacing: .07em; }
+    .star-copy p { margin: 0; max-width: 950px; color: var(--muted); font-size: 15px; }
+    .star-copy p + p { margin-top: 12px; }
+    .star-copy ul { margin: 12px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 22px; }
+    .star-copy li { color: var(--muted); position: relative; padding-left: 17px; font-size: 14px; }
+    .star-copy li::before { content: "—"; position: absolute; left: 0; color: var(--red); }
+
+    .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin-top: 18px; border: 1px solid var(--line); }
+    .metric { padding: 18px; background: var(--paper); }
+    .metric strong { display: block; font: 650 29px/1 var(--serif); color: var(--teal); }
+    .metric span { display: block; margin-top: 6px; color: var(--muted); font-size: 12px; }
+
+    .quote-box { border-top: 1px solid var(--line); display: grid; grid-template-columns: 150px 1fr auto; align-items: center; gap: 20px; padding: 24px 34px; background: var(--ink); color: var(--paper); }
+    .quote-box .label { color: color-mix(in srgb, var(--paper) 60%, transparent); font: 500 10px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    .quote-box blockquote { margin: 0; font: 500 18px/1.35 var(--serif); }
+    .copy-button { border: 1px solid color-mix(in srgb, var(--paper) 35%, transparent); background: transparent; color: var(--paper); padding: 9px 12px; font: 500 11px/1 var(--mono); cursor: pointer; white-space: nowrap; }
+    .copy-button:hover, .copy-button:focus-visible { background: var(--paper); color: var(--ink); }
+    .copy-button.done { border-color: var(--teal); color: var(--teal); }
+
+    .interview-note { display: none; padding: 26px 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+    body.interview-mode .story-visual,
+    body.interview-mode .story-body { display: none; }
+    body.interview-mode .interview-note { display: block; }
+    body.interview-mode .story-head { grid-template-columns: 92px minmax(0, 1fr) 250px; }
+
+    .empty-state { display: none; padding: 60px 20px; text-align: center; color: var(--muted); border: 1px dashed var(--line); }
+    .empty-state.show { display: block; }
+    .page-end { border-top: 1px solid var(--line); padding: 28px 0 42px; color: var(--muted); }
+    .end-inner { display: flex; justify-content: space-between; gap: 20px; font: 400 11px/1.5 var(--mono); }
+    .end-inner a { text-decoration-color: var(--red); text-underline-offset: 3px; }
+
+    :focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+    @media (max-width: 860px) {
+      .hero { padding-top: 52px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+      .index-card { max-width: 520px; }
+      .story-head { grid-template-columns: 86px 1fr; }
+      .story-outcome { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); flex-direction: row; align-items: flex-end; }
+      .sequence { grid-template-columns: 1fr 24px 1fr; gap: 0; }
+      .sequence .sequence-arrow:nth-of-type(4) { display: none; }
+      .sequence .seq-node:nth-of-type(5) { grid-column: 1; margin-top: 16px; }
+      .sequence .sequence-arrow:nth-of-type(6) { grid-column: 2; margin-top: 16px; }
+      .sequence .seq-node:nth-of-type(7) { grid-column: 3; margin-top: 16px; }
+      .quote-box { grid-template-columns: 110px 1fr; }
+      .copy-button { grid-column: 2; justify-self: start; }
+      body.interview-mode .story-head { grid-template-columns: 80px 1fr; }
+      body.interview-mode .story-outcome { grid-column: 1 / -1; }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: min(100% - 24px, 1180px); }
+      .mast-inner { min-height: 56px; }
+      .nav-link { display: none; }
+      .section-mark { font-size: 10px; }
+      .hero { padding: 42px 0 38px; }
+      h1 { font-size: clamp(48px, 15vw, 68px); }
+      .hero-copy { font-size: 17px; }
+      .index-card { padding: 18px; box-shadow: 7px 7px 0 var(--red); }
+      .tool-row { padding: 16px 0; }
+      .tools { align-items: flex-start; }
+      .filter-set { width: 100%; }
+      .filter-button { flex: 1; padding-inline: 9px; }
+      .stories { padding-top: 28px; gap: 28px; }
+      .story-head { grid-template-columns: 1fr; }
+      .story-number { border-right: 0; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px; padding: 15px 18px; }
+      .story-number strong { font: 650 25px/1 var(--serif); margin: 0; }
+      .story-title { padding: 25px 20px; }
+      .story-title h2 { font-size: 35px; }
+      .story-outcome { padding: 20px; display: block; }
+      .tags { margin-top: 16px; }
+      .story-visual { padding: 20px; overflow: hidden; }
+      .sequence { grid-template-columns: 1fr; gap: 8px; }
+      .sequence-arrow { min-height: 20px; transform: rotate(90deg); }
+      .sequence .sequence-arrow:nth-of-type(4) { display: grid; }
+      .sequence .seq-node:nth-of-type(5),
+      .sequence .sequence-arrow:nth-of-type(6),
+      .sequence .seq-node:nth-of-type(7) { grid-column: auto; margin-top: 0; }
+      .seq-node { min-height: 92px; }
+      .story-body { padding: 0 20px; }
+      .star-row { grid-template-columns: 38px 1fr; }
+      .star-letter { font-size: 28px; padding: 24px 0; }
+      .star-copy { padding: 22px 0 23px 18px; }
+      .star-copy ul { grid-template-columns: 1fr; }
+      .result-grid { grid-template-columns: 1fr; }
+      .quote-box { grid-template-columns: 1fr; padding: 24px 20px; }
+      .copy-button { grid-column: auto; }
+      .end-inner { flex-direction: column; }
+      body.interview-mode .story-head { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#stories">Skip to stories</a>
+  <header class="mast">
+    <div class="wrap mast-inner">
+      <div class="section-mark">Career case files</div>
+      <nav class="nav-actions" aria-label="Story navigation">
+        <a class="nav-link" href="#stories">Stories</a>
+        <button class="mode-button" id="modeButton" type="button" aria-pressed="false">Interview view</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-heading">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="hero-kicker">Real work · clearly told</p>
+          <h1 id="page-heading">Proof lives in the process.</h1>
+          <p class="hero-copy">Two stories about seeing the actual problem, designing a practical system, and carrying the fix through to a measurable result.</p>
+        </div>
+        <aside class="index-card" aria-label="Story index">
+          <div class="index-card-head"><span>Field index</span><span>02 records</span></div>
+          <ol class="index-list">
+            <li><span class="num">01</span><span>LuMi no-voice fix</span><span class="kind">Debugging</span></li>
+            <li><span class="num">02</span><span>Job-search system</span><span class="kind">Systems</span></li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <section class="tool-row" aria-label="Story filters">
+      <div class="wrap tools">
+        <div class="filter-set" role="group" aria-label="Filter by theme">
+          <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All stories</button>
+          <button class="filter-button" type="button" data-filter="debugging" aria-pressed="false">Debugging</button>
+          <button class="filter-button" type="button" data-filter="systems" aria-pressed="false">Systems design</button>
+        </div>
+        <p class="record-count" id="recordCount" aria-live="polite">Showing 2 of 2 records</p>
+      </div>
+    </section>
+
+    <section class="wrap stories" id="stories" aria-label="Career stories">
+      <article class="story" data-themes="debugging mobile audio" id="lumi-audio-fix">
+        <header class="story-head">
+          <div class="story-number"><strong>01</strong>SEP<br />2026</div>
+          <div class="story-title">
+            <p class="meta">LuMi · mobile audio · Tauri + FastAPI</p>
+            <h2>The no-voice fix</h2>
+            <p class="lede">When iOS rejected delayed AI speech, the breakthrough was not another unlock attempt. It was keeping the audio session from going cold.</p>
+          </div>
+          <aside class="story-outcome" aria-label="Outcome and themes">
+            <div><span class="outcome-label">Outcome</span><div class="outcome-big">Voice restored on iOS</div></div>
+            <div class="tags"><span class="tag">debugging</span><span class="tag">audio</span><span class="tag">cross-platform</span></div>
+          </aside>
+        </header>
+
+        <div class="story-visual" aria-label="Problem-solving sequence">
+          <div class="sequence">
+            <div class="seq-node"><strong>User taps Send</strong><span>iOS grants a short audio window</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>AI + TTS runs</strong><span>5–15 second round-trip</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node is-accent"><strong>Silent loop stays active</strong><span>Audio session remains warm</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Real voice arrives</strong><span>Playback starts in the open session</span></div>
+          </div>
+        </div>
+
+        <div class="story-body">
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">S</div>
+            <div class="star-copy"><h3>Situation</h3><p>After LuMi’s temporary phone client became a true host-connected client, speech stopped working in iOS Safari. The old route reached text-to-speech in 1–3 seconds. The new host route needed 5–15 seconds for model thinking and voice generation—long enough for iOS to treat the original tap as stale and reject playback.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">T</div>
+            <div class="star-copy"><h3>Task</h3><p>Restore reliable voice playback on the phone without weakening the host architecture or depending on a user to tap again after every response.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">A</div>
+            <div class="star-copy">
+              <h3>Action</h3>
+              <p>After an AI debugging partner cycled through unsuccessful Web Audio fixes, I reframed the problem: iOS did not need to be unlocked later if its audio session never closed. I proposed starting a near-silent looping sound on the original Send gesture and holding it until the real voice arrived.</p>
+              <ul>
+                <li>Started a 5-second near-silent WAV loop on Send</li>
+                <li>Stopped the loop as real speech began</li>
+                <li>Moved playback to native audio elements</li>
+                <li>Primed the session with a 20 ms silent WAV</li>
+                <li>Removed the unreliable AudioContext path</li>
+                <li>Kept lip-sync independent of Web Audio</li>
+              </ul>
+            </div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">R</div>
+            <div class="star-copy"><h3>Result</h3><p>LuMi’s voice returned on iOS. The keep-alive was the missing piece, and the approach matched an established production technique known as silent-carrier or keep-alive audio—an answer I reached independently by focusing on the system constraint rather than the failing implementation.</p></div>
+          </section>
+        </div>
+        <div class="interview-note"><strong>Use this story for:</strong> creative debugging, challenging an approach, cross-platform constraints, or turning a rough idea into a working technical fix.</div>
+        <footer class="quote-box">
+          <div class="label">Interview version</div>
+          <blockquote id="quote-1">“When iOS kept killing our TTS audio because the AI response took longer than the browser’s unlock window, I stopped trying to force the audio session open and kept it alive with a silent loop—and the voice came back.”</blockquote>
+          <button class="copy-button" type="button" data-copy="quote-1">Copy one-liner</button>
+        </footer>
+      </article>
+
+      <article class="story" data-themes="systems automation workflow" id="job-search-system">
+        <header class="story-head">
+          <div class="story-number"><strong>02</strong>SEP<br />2026</div>
+          <div class="story-title">
+            <p class="meta">Career switch · Google Drive · automation</p>
+            <h2>The job-search system</h2>
+            <p class="lede">A scattered job hunt became a repeatable operating system: one source of truth, clear file rules, automated intake, complete packets, and follow-ups that do not rely on memory.</p>
+          </div>
+          <aside class="story-outcome" aria-label="Outcome and themes">
+            <div><span class="outcome-label">Outcome</span><div class="outcome-big">13 packets, fully traceable</div></div>
+            <div class="tags"><span class="tag">systems design</span><span class="tag">automation</span><span class="tag">workflow</span></div>
+          </aside>
+        </header>
+
+        <div class="story-visual" aria-label="Automated morning workflow">
+          <div class="sequence">
+            <div class="seq-node"><strong>Daily roundup</strong><span>Her AI assistant updates the shared document</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node is-accent"><strong>08:45 intake</strong><span>Archive the snapshot + detect new leads</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Tracker queue</strong><span>Each lead enters as “To review”</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Application packet</strong><span>Tailored files, source, status, follow-up</span></div>
+          </div>
+        </div>
+
+        <div class="story-body">
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">S</div>
+            <div class="star-copy"><h3>Situation</h3><p>I was switching from a decade in call centers into junior Python and remote back-office roles. Resumes, cover letters, and application history were scattered, while leads from my wife’s AI assistant arrived as expiring public links. There was no durable center of gravity.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">T</div>
+            <div class="star-copy"><h3>Task</h3><p>Design a system that could centralize the search and automate the repetitive parts—lead intake, filing, version control, application packets, status tracking, and follow-ups—without giving up human review at the point of submission.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">A</div>
+            <div class="star-copy">
+              <h3>Action</h3>
+              <p>I designed a Google Drive architecture around explicit boundaries and a single source of truth. A dedicated job-search inbox receives recruiter and application mail; my wife’s email stays separate, and her assistant feeds leads through one shared roundup document.</p>
+              <ul>
+                <li>Tracker sheet owns status, dates, links, and notes</li>
+                <li>Drive zones separate resumes, letters, packets, roundups, and reference</li>
+                <li><code>Company-Role-YYYYMMDD</code> names every tailored file</li>
+                <li>Each editable document has a matching PDF twin</li>
+                <li>A morning handoff archives leads and queues new roles</li>
+                <li>Every role gets a standardized, review-ready packet</li>
+                <li>I review and submit applications with legal attestations</li>
+                <li>Follow-up checks are tied to tracker dates</li>
+              </ul>
+            </div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">R</div>
+            <div class="star-copy">
+              <h3>Result</h3>
+              <p>The system moved from zero structure to an operating pipeline in days. Every packet is versioned, each status is traceable, and new leads flow into an archive and review queue automatically.</p>
+              <div class="result-grid" aria-label="Results">
+                <div class="metric"><strong>13</strong><span>application packets filed</span></div>
+                <div class="metric"><strong>6</strong><span>applications submitted in one day</span></div>
+                <div class="metric"><strong>1</strong><span>tracker as the source of truth</span></div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="interview-note"><strong>Use this story for:</strong> systems thinking, workflow design, automation, prioritization, or showing how you turn a messy process into reliable operations.</div>
+        <footer class="quote-box">
+          <div class="label">Interview version</div>
+          <blockquote id="quote-2">“When my job search became scattered, I designed an automated pipeline: one dedicated inbox, a structured drive, a daily lead handoff between two assistants, and a standard packet for every role. Thirteen packets, a full audit trail, and zero lost paperwork.”</blockquote>
+          <button class="copy-button" type="button" data-copy="quote-2">Copy one-liner</button>
+        </footer>
+      </article>
+
+      <div class="empty-state" id="emptyState">No stories match this filter.</div>
+    </section>
+  </main>
+
+  <footer class="page-end">
+    <div class="wrap end-inner"><span>Built from real work. Facts first.</span><a href="#page-heading">Back to top ↑</a></div>
+  </footer>
+
+  <script>
+    (function () {
+      var filterButtons = Array.prototype.slice.call(document.querySelectorAll('.filter-button'));
+      var stories = Array.prototype.slice.call(document.querySelectorAll('.story'));
+      var recordCount = document.getElementById('recordCount');
+      var emptyState = document.getElementById('emptyState');
+      var modeButton = document.getElementById('modeButton');
+
+      filterButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          var filter = button.getAttribute('data-filter');
+          var visible = 0;
+          filterButtons.forEach(function (item) {
+            item.setAttribute('aria-pressed', item === button ? 'true' : 'false');
+          });
+          stories.forEach(function (story) {
+            var match = filter === 'all' || story.getAttribute('data-themes').indexOf(filter) !== -1;
+            story.hidden = !match;
+            if (match) visible += 1;
+          });
+          recordCount.textContent = 'Showing ' + visible + ' of ' + stories.length + ' records';
+          emptyState.classList.toggle('show', visible === 0);
+        });
+      });
+
+      modeButton.addEventListener('click', function () {
+        var active = !document.body.classList.contains('interview-mode');
+        document.body.classList.toggle('interview-mode', active);
+        modeButton.setAttribute('aria-pressed', active ? 'true' : 'false');
+        modeButton.textContent = active ? 'Full story view' : 'Interview view';
+      });
+
+      Array.prototype.slice.call(document.querySelectorAll('.copy-button')).forEach(function (button) {
+        button.addEventListener('click', function () {
+          var target = document.getElementById(button.getAttribute('data-copy'));
+          var text = target.textContent.replace(/^“|”$/g, '');
+          function markDone() {
+            var old = button.textContent;
+            button.textContent = 'Copied';
+            button.classList.add('done');
+            window.setTimeout(function () {
+              button.textContent = old;
+              button.classList.remove('done');
+            }, 1800);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(markDone, function () {
+              button.textContent = 'Select text to copy';
+            });
+          } else {
+            var range = document.createRange();
+            range.selectNodeContents(target);
+            var selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            button.textContent = 'Text selected';
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
