@@ -143,6 +143,9 @@
     .star-copy h3 { margin: 0 0 9px; font: 600 13px/1 var(--mono); text-transform: uppercase; letter-spacing: .07em; }
     .star-copy p { margin: 0; max-width: 950px; color: var(--muted); font-size: 15px; }
     .star-copy p + p { margin-top: 12px; }
+    .source-links { font: 400 12px/1.5 var(--mono); }
+    .source-links a { color: var(--teal); text-underline-offset: 3px; }
+    .source-links a:hover { color: var(--ink); }
     .star-copy ul { margin: 12px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 22px; }
     .star-copy li { color: var(--muted); position: relative; padding-left: 17px; font-size: 14px; }
     .star-copy li::before { content: "—"; position: absolute; left: 0; color: var(--red); }
@@ -251,13 +254,14 @@
         <div>
           <p class="hero-kicker">Real work · clearly told</p>
           <h1 id="page-heading">Proof lives in the process.</h1>
-          <p class="hero-copy">Two stories about seeing the actual problem, designing a practical system, and carrying the fix through to a measurable result.</p>
+          <p class="hero-copy">Three stories about seeing the actual problem, designing a practical system, and carrying the work through to a meaningful result.</p>
         </div>
         <aside class="index-card" aria-label="Story index">
-          <div class="index-card-head"><span>Field index</span><span>02 records</span></div>
+          <div class="index-card-head"><span>Field index</span><span>03 records</span></div>
           <ol class="index-list">
             <li><span class="num">01</span><span>LuMi no-voice fix</span><span class="kind">Debugging</span></li>
             <li><span class="num">02</span><span>Job-search system</span><span class="kind">Systems</span></li>
+            <li><span class="num">03</span><span>Discord gatekeeper</span><span class="kind">Product</span></li>
           </ol>
         </aside>
       </div>
@@ -269,8 +273,9 @@
           <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All stories</button>
           <button class="filter-button" type="button" data-filter="debugging" aria-pressed="false">Debugging</button>
           <button class="filter-button" type="button" data-filter="systems" aria-pressed="false">Systems design</button>
+          <button class="filter-button" type="button" data-filter="product" aria-pressed="false">Product building</button>
         </div>
-        <p class="record-count" id="recordCount" aria-live="polite">Showing 2 of 2 records</p>
+        <p class="record-count" id="recordCount" aria-live="polite">Showing 3 of 3 records</p>
       </div>
     </section>
 
@@ -408,6 +413,73 @@
           <div class="label">Interview version</div>
           <blockquote id="quote-2">“When my job search became scattered, I designed an automated pipeline: one dedicated inbox, a structured drive, a daily lead handoff between two assistants, and a standard packet for every role. Thirteen packets, a full audit trail, and zero lost paperwork.”</blockquote>
           <button class="copy-button" type="button" data-copy="quote-2">Copy one-liner</button>
+        </footer>
+      </article>
+
+      <article class="story" data-themes="systems automation product business" id="discord-gatekeeper">
+        <header class="story-head">
+          <div class="story-number"><strong>03</strong>SEP<br />2026</div>
+          <div class="story-title">
+            <p class="meta">Discord · Python · discord.py · monitoring</p>
+            <h2>The gatekeeper bot</h2>
+            <p class="lede">A familiar community problem became a working Python automation—and a public example of how to build, deploy, monitor, and grow a useful product.</p>
+          </div>
+          <aside class="story-outcome" aria-label="Outcome and themes">
+            <div><span class="outcome-label">Outcome</span><div class="outcome-big">Featured by UptimeRobot</div></div>
+            <div class="tags"><span class="tag">product building</span><span class="tag">automation</span><span class="tag">reliability</span></div>
+          </aside>
+        </header>
+
+        <div class="story-visual" aria-label="Gatekeeper bot development sequence">
+          <div class="sequence">
+            <div class="seq-node"><strong>Start with Discord</strong><span>A community space I already understood</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node is-accent"><strong>Build the gatekeeper</strong><span>Check answers, grant roles, hide spoilers</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Deploy the service</strong><span>Render, Flask, and a background worker</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Monitor availability</strong><span>UptimeRobot watches the live service</span></div>
+          </div>
+        </div>
+
+        <div class="story-body">
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">S</div>
+            <div class="star-copy"><h3>Situation</h3><p>I was returning to programming after years away and wanted to build a business around practical automation. Rather than choose an unfamiliar problem just to practice Python, I started with Discord—a platform I already knew well as a gamer and longtime user.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">T</div>
+            <div class="star-copy"><h3>Task</h3><p>Create a small but useful Discord product that could automate access and rewards inside a community, then keep it available on free-tier infrastructure without turning deployment and monitoring into a second project.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">A</div>
+            <div class="star-copy">
+              <h3>Action</h3>
+              <p>I built a lightweight gatekeeper bot in Python with discord.py. It watches a designated channel, checks each response against a secret answer, grants the winner a specified reward role, and deletes the winning answer so the challenge is not spoiled for everyone else.</p>
+              <ul>
+                <li>Turned a community ritual into an event-driven workflow</li>
+                <li>Automated role assignment after a correct response</li>
+                <li>Removed winning answers to protect the challenge</li>
+                <li>Hosted the project on Render’s free web tier</li>
+                <li>Used Flask alongside a background ping worker</li>
+                <li>Added UptimeRobot for external availability monitoring</li>
+              </ul>
+            </div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">R</div>
+            <div class="star-copy">
+              <h3>Result</h3>
+              <p>The project became a running, monitored automation with room to expand into tools for streamers, gaming tournaments, and membership-based servers. UptimeRobot selected the work for its Community Spotlight, profiling both the bot and the learning process behind deploying and monitoring it.</p>
+              <p class="source-links">Read the <a href="https://uptimerobot.com/blog/community-spotlight-prog/" target="_blank" rel="noopener noreferrer">UptimeRobot Community Spotlight</a> and the <a href="https://www.reddit.com/r/UptimeRobot/comments/1wcisac/spotlight_series_be_our_next_spotlight/" target="_blank" rel="noopener noreferrer">series announcement</a>.</p>
+            </div>
+          </section>
+        </div>
+        <div class="interview-note"><strong>Use this story for:</strong> product thinking, learning a new stack, event-driven automation, deployment, reliability, or turning personal domain knowledge into a useful tool.</div>
+        <footer class="quote-box">
+          <div class="label">Interview version</div>
+          <blockquote id="quote-3">“I turned a Discord workflow I understood into a Python gatekeeper bot that checks secret answers, grants roles, and protects the challenge—then deployed and monitored it well enough for UptimeRobot to feature the project in its Community Spotlight.”</blockquote>
+          <button class="copy-button" type="button" data-copy="quote-3">Copy one-liner</button>
         </footer>
       </article>
 
