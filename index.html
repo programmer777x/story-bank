@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,650&display=swap" rel="stylesheet" />
-  <title>Story Bank Website</title>
+  <title>Chia’s Career Story Bank</title>
   <style>
     :root {
       color-scheme: light dark;
@@ -252,16 +252,17 @@
     <section class="hero" aria-labelledby="page-heading">
       <div class="wrap hero-grid">
         <div>
-          <p class="hero-kicker">Real work · clearly told</p>
+          <p class="hero-kicker">Chia’s career story bank · Real work, clearly told</p>
           <h1 id="page-heading">Proof lives in the process.</h1>
-          <p class="hero-copy">Three stories about seeing the actual problem, designing a practical system, and carrying the work through to a meaningful result.</p>
+          <p class="hero-copy">Four stories about seeing the actual problem, designing a practical system, and carrying the work through to a meaningful result.</p>
         </div>
         <aside class="index-card" aria-label="Story index">
-          <div class="index-card-head"><span>Field index</span><span>03 records</span></div>
+          <div class="index-card-head"><span>Field index</span><span>04 records</span></div>
           <ol class="index-list">
             <li><span class="num">01</span><span>LuMi no-voice fix</span><span class="kind">Debugging</span></li>
             <li><span class="num">02</span><span>Job-search system</span><span class="kind">Systems</span></li>
             <li><span class="num">03</span><span>Discord gatekeeper</span><span class="kind">Product</span></li>
+            <li><span class="num">04</span><span>Silence-padding trick</span><span class="kind">Audio</span></li>
           </ol>
         </aside>
       </div>
@@ -275,7 +276,7 @@
           <button class="filter-button" type="button" data-filter="systems" aria-pressed="false">Systems design</button>
           <button class="filter-button" type="button" data-filter="product" aria-pressed="false">Product building</button>
         </div>
-        <p class="record-count" id="recordCount" aria-live="polite">Showing 3 of 3 records</p>
+        <p class="record-count" id="recordCount" aria-live="polite">Showing 4 of 4 records</p>
       </div>
     </section>
 
@@ -480,6 +481,69 @@
           <div class="label">Interview version</div>
           <blockquote id="quote-3">“I turned a Discord workflow I understood into a Python gatekeeper bot that checks secret answers, grants roles, and protects the challenge—then deployed and monitored it well enough for UptimeRobot to feature the project in its Community Spotlight.”</blockquote>
           <button class="copy-button" type="button" data-copy="quote-3">Copy one-liner</button>
+        </footer>
+      </article>
+
+      <article class="story" data-themes="debugging audio production creativity" id="silence-padding-trick">
+        <header class="story-head">
+          <div class="story-number"><strong>04</strong>OCT<br />2026</div>
+          <div class="story-title">
+            <p class="meta">Kai Corrects LuMi · Episode 1 · TTS + ffmpeg</p>
+            <h2>The silence-padding trick</h2>
+            <p class="lede">Instead of fighting static at each audio join, the fix gave the artifact somewhere disposable to land—then cut that section away.</p>
+          </div>
+          <aside class="story-outcome" aria-label="Outcome and themes">
+            <div><span class="outcome-label">Outcome</span><div class="outcome-big">Clean seams, no re-render</div></div>
+            <div class="tags"><span class="tag">creative problem-solving</span><span class="tag">audio production</span><span class="tag">lateral thinking</span></div>
+          </aside>
+        </header>
+
+        <div class="story-visual" aria-label="Silence-padding workflow">
+          <div class="sequence">
+            <div class="seq-node"><strong>Start with TTS parts</strong><span>A long episode must be rendered in segments</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node is-accent"><strong>Add silence padding</strong><span>One second before and after each part</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Stitch as WAV</strong><span>Join artifacts land in the filler</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Trim the padding</strong><span>The seam static leaves with it</span></div>
+          </div>
+        </div>
+
+        <div class="story-body">
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">S</div>
+            <div class="star-copy"><h3>Situation</h3><p>Producing Episode 1 of my AI-hosted show meant rendering a seven-minute episode through a TTS backend that could not handle it in one shot. The script had to be rendered in parts, and every stitch left clicks and static at the seam. Re-rendering the whole episode clean was not an option.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">T</div>
+            <div class="star-copy"><h3>Task</h3><p>Remove the static at the stitch joins without re-rendering every segment.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">A</div>
+            <div class="star-copy">
+              <h3>Action</h3>
+              <p>The first instinct was to make the joins themselves cleaner. I flipped the problem: if the static always landed at a join, I could give it somewhere harmless to land. I proposed padding every part with extra silence, letting the artifacts fall into that disposable filler, then trimming it away.</p>
+              <ul>
+                <li>Added one second of silence to each end of every part</li>
+                <li>Stitched the padded segments as WAV audio</li>
+                <li>Let join artifacts land inside the filler</li>
+                <li>Trimmed the added silence back out with ffmpeg</li>
+                <li>Avoided re-rendering the original TTS segments</li>
+                <li>Turned the method into a repeatable production step</li>
+              </ul>
+            </div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">R</div>
+            <div class="star-copy"><h3>Result</h3><p>The join static disappeared exactly as designed, carried off with the trimmed filler. The episode also had a separate, deeper hiss caused by backend conditions, which was later solved with a quiet-window re-render. The padding trick still fully solved the seam problem it targeted and became the standing method for multi-part stitches on the show.</p></div>
+          </section>
+        </div>
+        <div class="interview-note"><strong>Use this story for:</strong> creative problem-solving, lateral thinking, audio production, working around tool constraints, or separating one technical problem from another.</div>
+        <footer class="quote-box">
+          <div class="label">Interview version</div>
+          <blockquote id="quote-4">“When our TTS clips kept clicking at the seams, I stopped trying to perfect the joins and padded each clip with silence instead—let the static land in the padding, then cut it off. Clean seams, no re-render.”</blockquote>
+          <button class="copy-button" type="button" data-copy="quote-4">Copy one-liner</button>
         </footer>
       </article>
 
