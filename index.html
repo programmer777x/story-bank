@@ -254,15 +254,16 @@
         <div>
           <p class="hero-kicker">Chia’s career story bank · Real work, clearly told</p>
           <h1 id="page-heading">Proof lives in the process.</h1>
-          <p class="hero-copy">Four stories about seeing the actual problem, designing a practical system, and carrying the work through to a meaningful result.</p>
+          <p class="hero-copy">Five stories about seeing the actual problem, designing a practical system, and carrying the work through to a meaningful result.</p>
         </div>
         <aside class="index-card" aria-label="Story index">
-          <div class="index-card-head"><span>Field index</span><span>04 records</span></div>
+          <div class="index-card-head"><span>Field index</span><span>05 records</span></div>
           <ol class="index-list">
             <li><span class="num">01</span><span>LuMi no-voice fix</span><span class="kind">Debugging</span></li>
             <li><span class="num">02</span><span>Job-search system</span><span class="kind">Systems</span></li>
             <li><span class="num">03</span><span>Discord gatekeeper</span><span class="kind">Product</span></li>
             <li><span class="num">04</span><span>Silence-padding trick</span><span class="kind">Audio</span></li>
+            <li><span class="num">05</span><span>AI model routing</span><span class="kind">Systems</span></li>
           </ol>
         </aside>
       </div>
@@ -276,7 +277,7 @@
           <button class="filter-button" type="button" data-filter="systems" aria-pressed="false">Systems design</button>
           <button class="filter-button" type="button" data-filter="product" aria-pressed="false">Product building</button>
         </div>
-        <p class="record-count" id="recordCount" aria-live="polite">Showing 4 of 4 records</p>
+        <p class="record-count" id="recordCount" aria-live="polite">Showing 5 of 5 records</p>
       </div>
     </section>
 
@@ -544,6 +545,71 @@
           <div class="label">Interview version</div>
           <blockquote id="quote-4">“When our TTS clips kept clicking at the seams, I stopped trying to perfect the joins and padded each clip with silence instead—let the static land in the padding, then cut it off. Clean seams, no re-render.”</blockquote>
           <button class="copy-button" type="button" data-copy="quote-4">Copy one-liner</button>
+        </footer>
+      </article>
+
+      <article class="story" data-themes="systems automation workflow ai resourcefulness" id="ai-model-routing">
+        <header class="story-head">
+          <div class="story-number"><strong>05</strong>OCT<br />2026</div>
+          <div class="story-title">
+            <p class="meta">AI workflow · job search · show production</p>
+            <h2>Routing work across six AI models</h2>
+            <p class="lede">Instead of treating every AI as interchangeable, I built a deliberate routing system around each model’s strengths, the work’s stakes, and the need to verify every output.</p>
+          </div>
+          <aside class="story-outcome" aria-label="Outcome and themes">
+            <div><span class="outcome-label">Outcome</span><div class="outcome-big">A constraint became a resume skill</div></div>
+            <div class="tags"><span class="tag">systems design</span><span class="tag">resourcefulness</span><span class="tag">AI-assisted QA</span></div>
+          </aside>
+        </header>
+
+        <div class="story-visual" aria-label="AI model routing workflow">
+          <div class="sequence">
+            <div class="seq-node"><strong>Assess the task</strong><span>Depth, recency, length, creativity, or execution</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node is-accent"><strong>Route by strength</strong><span>Choose the best-fit model for the work</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Verify the output</strong><span>Check accuracy before relying on it</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Protect scarce capacity</strong><span>Reserve agentic work for where it matters most</span></div>
+          </div>
+        </div>
+
+        <div class="story-body">
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">S</div>
+            <div class="star-copy"><h3>Situation</h3><p>My job-search pipeline and YouTube show production both rely heavily on AI, but no single model is best at every kind of work. My strongest agentic tool also has a weekly usage limit, so using it for tasks another model could handle would waste scarce capacity. Trusting any model without review would create a different risk: errors slipping into real work.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">T</div>
+            <div class="star-copy"><h3>Task</h3><p>Get the most useful work from the tools available without wasting capacity: match each task to the model that handles it best, preserve the strongest tool for high-value execution, and verify AI output before acting on it.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">A</div>
+            <div class="star-copy">
+              <h3>Action</h3>
+              <p>I turned my own usage notes into a six-model routing system. Each model received a clear lane based on repeated strengths, with output verification and workflow automation as standing rules underneath the whole system.</p>
+              <ul>
+                <li><strong>Muse:</strong> multi-step agentic work for the job search and show</li>
+                <li><strong>Claude:</strong> deep analysis of complex problems</li>
+                <li><strong>DeepSeek:</strong> consistent long documents, code, and daily planning</li>
+                <li><strong>Gemini:</strong> fast research using up-to-date information</li>
+                <li><strong>ChatGPT:</strong> creative, human-toned writing</li>
+                <li><strong>Grok:</strong> quick general-purpose backup</li>
+                <li>Review AI-generated work for accuracy before using it</li>
+                <li>Automate repeatable workflows instead of relying on one-off prompts</li>
+              </ul>
+            </div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">R</div>
+            <div class="star-copy"><h3>Result</h3><p>The routing system now supports my daily operation. For example, DeepSeek handles the daily to-do list, which preserves Muse capacity for the job search and show production. What began as a usage constraint became a professional skill on my master resume: AI model routing by strength, AI output verification, and workflow automation.</p></div>
+          </section>
+        </div>
+        <div class="interview-note"><strong>Use this story for:</strong> resource management, systems thinking, AI literacy, quality control, working under constraints, or showing how you turn tool limitations into a repeatable operating method.</div>
+        <footer class="quote-box">
+          <div class="label">Interview version</div>
+          <blockquote id="quote-5">“I route work across six AI models by strength—agentic automation, deep analysis, long-form consistency, fast research, creative writing—and verify every output before acting on it. What began as a usage constraint became a skill on my resume.”</blockquote>
+          <button class="copy-button" type="button" data-copy="quote-5">Copy one-liner</button>
         </footer>
       </article>
 
