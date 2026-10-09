@@ -100,7 +100,9 @@
     .index-card-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 18px; border-bottom: 1px solid color-mix(in srgb, var(--paper) 24%, transparent); font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
     .index-card-head span:last-child { color: var(--red); }
     .index-list { list-style: none; margin: 0; padding: 8px 0 0; }
-    .index-list li { display: grid; grid-template-columns: 26px 1fr auto; gap: 9px; align-items: center; padding: 14px 0; border-bottom: 1px solid color-mix(in srgb, var(--paper) 18%, transparent); font-size: 13px; }
+    .index-list li { border-bottom: 1px solid color-mix(in srgb, var(--paper) 18%, transparent); }
+    .index-list a { display: grid; grid-template-columns: 26px 1fr auto; gap: 9px; align-items: center; padding: 14px 0; font-size: 13px; text-decoration: none; }
+    .index-list a:hover, .index-list a:focus-visible { color: var(--red); }
     .index-list .num { color: var(--red); font-family: var(--mono); }
     .index-list .kind { color: color-mix(in srgb, var(--paper) 62%, transparent); font: 400 10px/1 var(--mono); text-transform: uppercase; }
 
@@ -112,7 +114,7 @@
     .record-count { margin: 0; color: var(--muted); font: 400 12px/1.4 var(--mono); }
 
     .stories { padding: 48px 0 80px; display: grid; gap: 42px; }
-    .story { background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .story { background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); scroll-margin-top: 88px; }
     .story[hidden] { display: none; }
     .story-head { display: grid; grid-template-columns: 110px minmax(0, 1fr) 290px; }
     .story-number { border-right: 1px solid var(--line); padding: 28px 18px; font: 500 12px/1.25 var(--mono); color: var(--muted); }
@@ -259,12 +261,12 @@
         <aside class="index-card" aria-label="Story index">
           <div class="index-card-head"><span>Field index</span><span>06 records</span></div>
           <ol class="index-list">
-            <li><span class="num">01</span><span>LuMi no-voice fix</span><span class="kind">Debugging</span></li>
-            <li><span class="num">02</span><span>AI model routing</span><span class="kind">Systems</span></li>
-            <li><span class="num">03</span><span>Job-search system</span><span class="kind">Systems</span></li>
-            <li><span class="num">04</span><span>Discord gatekeeper</span><span class="kind">Product</span></li>
-            <li><span class="num">05</span><span>Silence-padding trick</span><span class="kind">Audio</span></li>
-            <li><span class="num">06</span><span>LLM-proof task protocol</span><span class="kind">Systems</span></li>
+            <li><a href="#lumi-audio-fix"><span class="num">01</span><span>LuMi no-voice fix</span><span class="kind">Debugging</span></a></li>
+            <li><a href="#ai-model-routing"><span class="num">02</span><span>AI model routing</span><span class="kind">Systems</span></a></li>
+            <li><a href="#job-search-system"><span class="num">03</span><span>Job-search system</span><span class="kind">Systems</span></a></li>
+            <li><a href="#discord-gatekeeper"><span class="num">04</span><span>Discord gatekeeper</span><span class="kind">Product</span></a></li>
+            <li><a href="#silence-padding-trick"><span class="num">05</span><span>Silence-padding trick</span><span class="kind">Audio</span></a></li>
+            <li><a href="#llm-task-protocol"><span class="num">06</span><span>LLM-proof task protocol</span><span class="kind">Systems</span></a></li>
           </ol>
         </aside>
       </div>
