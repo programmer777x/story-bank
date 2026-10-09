@@ -160,8 +160,11 @@
     .quote-box { border-top: 1px solid var(--line); display: grid; grid-template-columns: 150px 1fr auto; align-items: center; gap: 20px; padding: 24px 34px; background: var(--ink); color: var(--paper); }
     .quote-box .label { color: color-mix(in srgb, var(--paper) 60%, transparent); font: 500 10px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
     .quote-box blockquote { margin: 0; font: 500 18px/1.35 var(--serif); }
-    .copy-button { border: 1px solid color-mix(in srgb, var(--paper) 35%, transparent); background: transparent; color: var(--paper); padding: 9px 12px; font: 500 11px/1 var(--mono); cursor: pointer; white-space: nowrap; }
-    .copy-button:hover, .copy-button:focus-visible { background: var(--paper); color: var(--ink); }
+    .quote-actions { display: flex; align-items: center; gap: 9px; }
+    .copy-button, .top-link { border: 1px solid color-mix(in srgb, var(--paper) 35%, transparent); background: transparent; color: var(--paper); padding: 9px 12px; font: 500 11px/1 var(--mono); white-space: nowrap; }
+    .copy-button { cursor: pointer; }
+    .top-link { text-decoration: none; }
+    .copy-button:hover, .copy-button:focus-visible, .top-link:hover, .top-link:focus-visible { background: var(--paper); color: var(--ink); }
     .copy-button.done { border-color: var(--teal); color: var(--teal); }
 
     .interview-note { display: none; padding: 26px 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
@@ -189,7 +192,7 @@
       .sequence .sequence-arrow:nth-of-type(6) { grid-column: 2; margin-top: 16px; }
       .sequence .seq-node:nth-of-type(7) { grid-column: 3; margin-top: 16px; }
       .quote-box { grid-template-columns: 110px 1fr; }
-      .copy-button { grid-column: 2; justify-self: start; }
+      .quote-actions { grid-column: 2; justify-self: start; }
       body.interview-mode .story-head { grid-template-columns: 80px 1fr; }
       body.interview-mode .story-outcome { grid-column: 1 / -1; }
     }
@@ -229,7 +232,7 @@
       .star-copy ul { grid-template-columns: 1fr; }
       .result-grid { grid-template-columns: 1fr; }
       .quote-box { grid-template-columns: 1fr; padding: 24px 20px; }
-      .copy-button { grid-column: auto; }
+      .quote-actions { grid-column: auto; flex-wrap: wrap; }
       .end-inner { flex-direction: column; }
       body.interview-mode .story-head { grid-template-columns: 1fr; }
     }
@@ -238,7 +241,7 @@
     }
   </style>
 </head>
-<body>
+<body id="top">
   <a class="skip-link" href="#stories">Skip to stories</a>
   <header class="mast">
     <div class="wrap mast-inner">
@@ -344,7 +347,7 @@
         <footer class="quote-box">
           <div class="label">Interview version</div>
           <blockquote id="quote-1">“When iOS kept killing our TTS audio because the AI response took longer than the browser’s unlock window, I stopped trying to force the audio session open and kept it alive with a silent loop—and the voice came back.”</blockquote>
-          <button class="copy-button" type="button" data-copy="quote-1">Copy one-liner</button>
+          <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-1">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from The no-voice fix">Back to top ↑</a></div>
         </footer>
       </article>
 
@@ -409,7 +412,7 @@
         <footer class="quote-box">
           <div class="label">Interview version</div>
           <blockquote id="quote-2">“I route work across six AI models by strength—agentic automation, deep analysis, long-form consistency, fast research, creative writing—and verify every output before acting on it. What began as a usage constraint became a skill on my resume.”</blockquote>
-          <button class="copy-button" type="button" data-copy="quote-2">Copy one-liner</button>
+          <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-2">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from AI model routing">Back to top ↑</a></div>
         </footer>
       </article>
 
@@ -482,7 +485,7 @@
         <footer class="quote-box">
           <div class="label">Interview version</div>
           <blockquote id="quote-3">“When my job search became scattered, I designed an automated pipeline: one dedicated inbox, a structured drive, a daily lead handoff between two assistants, and a standard packet for every role. Fifteen packets, a full audit trail, and zero lost paperwork.”</blockquote>
-          <button class="copy-button" type="button" data-copy="quote-3">Copy one-liner</button>
+          <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-3">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from The job-search system">Back to top ↑</a></div>
         </footer>
       </article>
 
@@ -549,7 +552,7 @@
         <footer class="quote-box">
           <div class="label">Interview version</div>
           <blockquote id="quote-4">“I turned a Discord workflow I understood into a Python gatekeeper bot that checks secret answers, grants roles, and protects the challenge—then deployed and monitored it well enough for UptimeRobot to feature the project in its Community Spotlight.”</blockquote>
-          <button class="copy-button" type="button" data-copy="quote-4">Copy one-liner</button>
+          <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-4">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from The gatekeeper bot">Back to top ↑</a></div>
         </footer>
       </article>
 
@@ -612,7 +615,7 @@
         <footer class="quote-box">
           <div class="label">Interview version</div>
           <blockquote id="quote-5">“When our TTS clips kept clicking at the seams, I stopped trying to perfect the joins and padded each clip with silence instead—let the static land in the padding, then cut it off. Clean seams, no re-render.”</blockquote>
-          <button class="copy-button" type="button" data-copy="quote-5">Copy one-liner</button>
+          <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-5">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from The silence-padding trick">Back to top ↑</a></div>
         </footer>
       </article>
 
@@ -677,7 +680,7 @@
         <footer class="quote-box">
           <div class="label">Interview version</div>
           <blockquote id="quote-6">“I turned an AI chat into a reliable cross-device task system by designing around its failure modes: stable decimal references, rules repeated in recent context, remove-not-checkmark completion, and periodic backups.”</blockquote>
-          <button class="copy-button" type="button" data-copy="quote-6">Copy one-liner</button>
+          <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-6">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from The LLM-proof task protocol">Back to top ↑</a></div>
         </footer>
       </article>
 
@@ -686,7 +689,7 @@
   </main>
 
   <footer class="page-end">
-    <div class="wrap end-inner"><span>Built from real work. Facts first.</span><a href="#page-heading">Back to top ↑</a></div>
+    <div class="wrap end-inner"><span>Built from real work. Facts first.</span><a href="#top">Back to top ↑</a></div>
   </footer>
 
   <script>
