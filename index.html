@@ -259,17 +259,18 @@
         <div>
           <p class="hero-kicker">Chia’s career story bank · Real work, clearly told</p>
           <h1 id="page-heading">Proof lives in the process.</h1>
-          <p class="hero-copy">Six stories about seeing the actual problem, designing a practical system, and carrying the work through to a meaningful result.</p>
+          <p class="hero-copy">Seven stories about seeing the actual problem, designing a practical system, and carrying the work through to a meaningful result.</p>
         </div>
         <aside class="index-card" aria-label="Story index">
-          <div class="index-card-head"><span>Field index</span><span>06 records</span></div>
+          <div class="index-card-head"><span>Field index</span><span>07 records</span></div>
           <ol class="index-list">
             <li><a href="#lumi-audio-fix"><span class="num">01</span><span>LuMi no-voice fix</span><span class="kind">Debugging</span></a></li>
             <li><a href="#ai-model-routing"><span class="num">02</span><span>AI model routing</span><span class="kind">Systems</span></a></li>
             <li><a href="#job-search-system"><span class="num">03</span><span>Job-search system</span><span class="kind">Systems</span></a></li>
             <li><a href="#discord-gatekeeper"><span class="num">04</span><span>Discord gatekeeper</span><span class="kind">Product</span></a></li>
             <li><a href="#silence-padding-trick"><span class="num">05</span><span>Silence-padding trick</span><span class="kind">Audio</span></a></li>
-            <li><a href="#llm-task-protocol"><span class="num">06</span><span>LLM-proof task protocol</span><span class="kind">Systems</span></a></li>
+            <li><a href="#composable-image-workflow"><span class="num">06</span><span>Composable image workflow</span><span class="kind">Design</span></a></li>
+            <li><a href="#llm-task-protocol"><span class="num">07</span><span>LLM-proof task protocol</span><span class="kind">Systems</span></a></li>
           </ol>
         </aside>
       </div>
@@ -283,7 +284,7 @@
           <button class="filter-button" type="button" data-filter="systems" aria-pressed="false">Systems design</button>
           <button class="filter-button" type="button" data-filter="product" aria-pressed="false">Product building</button>
         </div>
-        <p class="record-count" id="recordCount" aria-live="polite">Showing 6 of 6 records</p>
+        <p class="record-count" id="recordCount" aria-live="polite">Showing 7 of 7 records</p>
       </div>
     </section>
 
@@ -619,9 +620,72 @@
         </footer>
       </article>
 
-      <article class="story" data-themes="systems automation workflow ai planning" id="llm-task-protocol">
+      <article class="story" data-themes="systems workflow ai design creativity" id="composable-image-workflow">
         <header class="story-head">
           <div class="story-number"><strong>06</strong>OCT<br />2026</div>
+          <div class="story-title">
+            <p class="meta">LinkedIn banner · AI image generation · GIMP</p>
+            <h2>The composable image workflow</h2>
+            <p class="lede">Instead of asking AI to perfect a finished banner, I had it create the background and visual elements separately so I could control the final composition myself.</p>
+          </div>
+          <aside class="story-outcome" aria-label="Outcome and themes">
+            <div><span class="outcome-label">Outcome</span><div class="outcome-big">Precise layout without re-generating everything</div></div>
+            <div class="tags"><span class="tag">workflow design</span><span class="tag">visual production</span><span class="tag">AI collaboration</span></div>
+          </aside>
+        </header>
+
+        <div class="story-visual" aria-label="Composable image workflow">
+          <div class="sequence">
+            <div class="seq-node"><strong>Generate the background</strong><span>Build the scene without locking in placement</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node is-accent"><strong>Create separate elements</strong><span>Export each subject as its own transparent PNG</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Compose in GIMP</strong><span>Move, scale, layer, and repair each piece independently</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Finish the banner</strong><span>Keep the strongest generated parts and control the layout</span></div>
+          </div>
+        </div>
+
+        <div class="story-body">
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">S</div>
+            <div class="star-copy"><h3>Situation</h3><p>Previous AI image-generation work had shown me that a model could create strong individual visuals while still struggling to place every element correctly in one finished composition. We had run into the same issue while producing materials for my show, so I anticipated it before work began on my LinkedIn banner.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">T</div>
+            <div class="star-copy"><h3>Task</h3><p>Create a polished LinkedIn banner with several visual elements in exact positions, without losing good artwork every time one part of the layout needed to move or be corrected.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">A</div>
+            <div class="star-copy">
+              <h3>Action</h3>
+              <p>Before generation started, I instructed the AI to create the background and each major element separately rather than baking everything into one image. That turned the generated work into a set of reusable parts I could assemble and refine in GIMP.</p>
+              <ul>
+                <li>Generated a clean background as its own asset</li>
+                <li>Requested the main subjects as separate transparent PNGs</li>
+                <li>Positioned and scaled each element independently in GIMP</li>
+                <li>Adjusted the composition without redoing successful artwork</li>
+                <li>Repaired a visual detail directly during the final composite</li>
+                <li>Reused a lesson learned from earlier show-material production</li>
+              </ul>
+            </div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">R</div>
+            <div class="star-copy"><h3>Result</h3><p>When the AI had trouble placing the elements correctly, the separate-assets plan worked exactly as intended. I arranged the pieces myself, corrected a detail more cleanly in the composite, and produced the final banner now used on my LinkedIn profile. The process also became a repeatable method: use AI for strong visual components, then keep final layout control in a conventional editor.</p></div>
+          </section>
+        </div>
+        <div class="interview-note"><strong>Use this story for:</strong> visual workflow design, anticipating tool limitations, human-in-the-loop AI work, iterative production, or turning experience into a more controllable process.</div>
+        <footer class="quote-box">
+          <div class="label">Interview version</div>
+          <blockquote id="quote-6">“From earlier AI image work, I knew layout would be the fragile part, so I had the background and elements generated separately. When placement became a problem, I assembled the parts in GIMP and finished the banner without sacrificing the artwork that already worked.”</blockquote>
+          <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-6">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from The composable image workflow">Back to top ↑</a></div>
+        </footer>
+      </article>
+
+      <article class="story" data-themes="systems automation workflow ai planning" id="llm-task-protocol">
+        <header class="story-head">
+          <div class="story-number"><strong>07</strong>OCT<br />2026</div>
           <div class="story-title">
             <p class="meta">DeepSeek · task management · protocol design</p>
             <h2>The LLM-proof task protocol</h2>
@@ -679,8 +743,8 @@
         <div class="interview-note"><strong>Use this story for:</strong> protocol design, AI literacy, information architecture, resource management, or designing a reliable process around a tool’s known limitations.</div>
         <footer class="quote-box">
           <div class="label">Interview version</div>
-          <blockquote id="quote-6">“I turned an AI chat into a reliable cross-device task system by designing around its failure modes: stable decimal references, rules repeated in recent context, remove-not-checkmark completion, and periodic backups.”</blockquote>
-          <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-6">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from The LLM-proof task protocol">Back to top ↑</a></div>
+          <blockquote id="quote-7">“I turned an AI chat into a reliable cross-device task system by designing around its failure modes: stable decimal references, rules repeated in recent context, remove-not-checkmark completion, and periodic backups.”</blockquote>
+          <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-7">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from The LLM-proof task protocol">Back to top ↑</a></div>
         </footer>
       </article>
 
