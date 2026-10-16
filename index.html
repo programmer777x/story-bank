@@ -248,7 +248,6 @@
       <div class="section-mark">Career case files</div>
       <nav class="nav-actions" aria-label="Story navigation">
         <a class="nav-link" href="#stories">Stories</a>
-        <a class="nav-link" href="https://programmer777x.github.io/portfolio/">Portfolio</a>
         <button class="mode-button" id="modeButton" type="button" aria-pressed="false">Interview view</button>
       </nav>
     </div>
@@ -260,18 +259,19 @@
         <div>
           <p class="hero-kicker">Chia’s career story bank · Real work, clearly told</p>
           <h1 id="page-heading">Proof lives in the process.</h1>
-          <p class="hero-copy">Seven stories about seeing the actual problem, designing a practical system, and carrying the work through to a meaningful result.</p>
+          <p class="hero-copy">Eight stories about seeing the actual problem, designing a practical system, and carrying the work through to a meaningful result.</p>
         </div>
         <aside class="index-card" aria-label="Story index">
-          <div class="index-card-head"><span>Field index</span><span>07 records</span></div>
+          <div class="index-card-head"><span>Field index</span><span>08 records</span></div>
           <ol class="index-list">
             <li><a href="#lumi-audio-fix"><span class="num">01</span><span>LuMi no-voice fix</span><span class="kind">Debugging</span></a></li>
             <li><a href="#ai-model-routing"><span class="num">02</span><span>AI model routing</span><span class="kind">Systems</span></a></li>
             <li><a href="#job-search-system"><span class="num">03</span><span>Job-search system</span><span class="kind">Systems</span></a></li>
             <li><a href="#discord-gatekeeper"><span class="num">04</span><span>Discord gatekeeper</span><span class="kind">Product</span></a></li>
-            <li><a href="#silence-padding-trick"><span class="num">05</span><span>Silence-padding trick</span><span class="kind">Audio</span></a></li>
+            <li><a href="#magic-phrase-method"><span class="num">05</span><span>Magic phrase method</span><span class="kind">Audio</span></a></li>
             <li><a href="#composable-image-workflow"><span class="num">06</span><span>Composable image workflow</span><span class="kind">Design</span></a></li>
             <li><a href="#llm-task-protocol"><span class="num">07</span><span>LLM-proof task protocol</span><span class="kind">Systems</span></a></li>
+            <li><a href="#silence-padding-trick"><span class="num">08</span><span>Silence-padding trick</span><span class="kind">Audio</span></a></li>
           </ol>
         </aside>
       </div>
@@ -285,7 +285,7 @@
           <button class="filter-button" type="button" data-filter="systems" aria-pressed="false">Systems design</button>
           <button class="filter-button" type="button" data-filter="product" aria-pressed="false">Product building</button>
         </div>
-        <p class="record-count" id="recordCount" aria-live="polite">Showing 7 of 7 records</p>
+        <p class="record-count" id="recordCount" aria-live="polite">Showing 8 of 8 records</p>
       </div>
     </section>
 
@@ -558,66 +558,66 @@
         </footer>
       </article>
 
-      <article class="story" data-themes="debugging audio production creativity" id="silence-padding-trick">
+      <article class="story" data-themes="audio production creativity ai direction" id="magic-phrase-method">
         <header class="story-head">
           <div class="story-number"><strong>05</strong>OCT<br />2026</div>
           <div class="story-title">
-            <p class="meta">Kai Corrects LuMi · Episode 1 · TTS + ffmpeg</p>
-            <h2>The silence-padding trick</h2>
-            <p class="lede">Instead of fighting static at each audio join, the fix gave the artifact somewhere disposable to land—then cut that section away.</p>
+            <p class="meta">Jordan Corrects Alex · SEP3 · TTS voice direction</p>
+            <h2>The magic phrase method</h2>
+            <p class="lede">Our TTS voices take text and a voice ID—no tone, accent, or attitude knobs. So I stopped instructing the voice and started directing it: stage the scene, and let the model act.</p>
           </div>
           <aside class="story-outcome" aria-label="Outcome and themes">
-            <div><span class="outcome-label">Outcome</span><div class="outcome-big">Clean seams, no re-render</div></div>
-            <div class="tags"><span class="tag">creative problem-solving</span><span class="tag">audio production</span><span class="tag">lateral thinking</span></div>
+            <div><span class="outcome-label">Outcome</span><div class="outcome-big">Specific tones, delivered on cue</div></div>
+            <div class="tags"><span class="tag">voice direction</span><span class="tag">audio production</span><span class="tag">mental models</span></div>
           </aside>
         </header>
 
-        <div class="story-visual" aria-label="Silence-padding workflow">
+        <div class="story-visual" aria-label="Magic phrase method workflow">
           <div class="sequence">
-            <div class="seq-node"><strong>Start with TTS parts</strong><span>A long episode must be rendered in segments</span></div>
+            <div class="seq-node"><strong>A tone with no controls</strong><span>TTS takes text + voice ID only</span></div>
             <div class="sequence-arrow" aria-hidden="true">→</div>
-            <div class="seq-node is-accent"><strong>Add silence padding</strong><span>One second before and after each part</span></div>
+            <div class="seq-node is-accent"><strong>Stage the situation</strong><span>Place the line in a scene matching the tone</span></div>
             <div class="sequence-arrow" aria-hidden="true">→</div>
-            <div class="seq-node"><strong>Stitch as WAV</strong><span>Join artifacts land in the filler</span></div>
+            <div class="seq-node"><strong>Add the emotion</strong><span>Describe the feeling, not the sound</span></div>
             <div class="sequence-arrow" aria-hidden="true">→</div>
-            <div class="seq-node"><strong>Trim the padding</strong><span>The seam static leaves with it</span></div>
+            <div class="seq-node"><strong>Cut and glue</strong><span>Transplant the phrase into the natural sentence</span></div>
           </div>
         </div>
 
         <div class="story-body">
           <section class="star-row">
             <div class="star-letter" aria-hidden="true">S</div>
-            <div class="star-copy"><h3>Situation</h3><p>Producing Episode 1 of my AI-hosted show meant rendering a seven-minute episode through a TTS backend that could not handle it in one shot. The script had to be rendered in parts, and every stitch left clicks and static at the seam. Re-rendering the whole episode clean was not an option.</p></div>
+            <div class="star-copy"><h3>Situation</h3><p>Our show’s TTS voices take text plus a voice ID—there are no tone, accent, or attitude knobs. For SEP3 I needed two specific deliveries the plain renders could not produce: Alex with movie-trailer weight (“In a world… where robots read the news”) and a Terminator-style “I’ll be back.” What started as fixing a two-second pause became a bigger question: can these voices actually be directed?</p></div>
           </section>
           <section class="star-row">
             <div class="star-letter" aria-hidden="true">T</div>
-            <div class="star-copy"><h3>Task</h3><p>Remove the static at the stitch joins without re-rendering every segment.</p></div>
+            <div class="star-copy"><h3>Task</h3><p>Get one specific phrase delivered in one specific tone—reliably and reproducibly—from a tool that offers no controls for either.</p></div>
           </section>
           <section class="star-row">
             <div class="star-letter" aria-hidden="true">A</div>
             <div class="star-copy">
               <h3>Action</h3>
-              <p>The first instinct was to make the joins themselves cleaner. I flipped the problem: if the static always landed at a join, I could give it somewhere harmless to land. I proposed padding every part with extra silence, letting the artifacts fall into that disposable filler, then trimming it away.</p>
+              <p>I built the method from four insights, each tested the same day. Thinking back on our earlier RUDE and Kevin cases, I proposed the core theory: place the line in a dramatic situation matching the tone we want, to maximize the chance the model produces it. Underneath it sits a mental model—the TTS is not a voice following instructions; it is an actor reading a scene.</p>
               <ul>
-                <li>Added one second of silence to each end of every part</li>
-                <li>Stitched the padded segments as WAV audio</li>
-                <li>Let join artifacts land inside the filler</li>
-                <li>Trimmed the added silence back out with ffmpeg</li>
-                <li>Avoided re-rendering the original TTS segments</li>
-                <li>Turned the method into a repeatable production step</li>
+                <li>Staged each line inside a situation matching the target tone</li>
+                <li>Combined situation with emotion descriptions when bare stage directions were read as narration</li>
+                <li>Staged Alex as stiff, disappointed, and slow after being denied by a clerk</li>
+                <li>Invented cut-and-glue: render the sentence naturally, then swap the directed phrase in</li>
+                <li>Set the test protocol: natural baseline first, then apply the method</li>
+                <li>Used phonetic spelling—“I’ll.. be bock!”—to push the delivery closer</li>
               </ul>
             </div>
           </section>
           <section class="star-row">
             <div class="star-letter" aria-hidden="true">R</div>
-            <div class="star-copy"><h3>Result</h3><p>The join static disappeared exactly as designed, carried off with the trimmed filler. The episode also had a separate, deeper hiss caused by backend conditions, which was later solved with a quiet-window re-render. The padding trick still fully solved the seam problem it targeted and became the standing method for multi-part stitches on the show.</p></div>
+            <div class="star-copy"><h3>Result</h3><p>Both worked examples landed. Trailer-weight Alex came through exactly, and “I’ll.. be bock!”—denied-by-clerk staging, slow disappointed delivery, phonetic spelling—came out near-Arnold. The full five-step method, with both worked examples, is now written into our production guide: reproducible, not a one-off. My reaction at the time: “This method works like magic. LIKE MAGIC I tell you.”</p></div>
           </section>
         </div>
-        <div class="interview-note"><strong>Use this story for:</strong> creative problem-solving, lateral thinking, audio production, working around tool constraints, or separating one technical problem from another.</div>
+        <div class="interview-note"><strong>Use this story for:</strong> voice direction, building a mental model of how a tool works, method invention, creative problem-solving, or turning a one-off fix into a documented, repeatable process.</div>
         <footer class="quote-box">
           <div class="label">Interview version</div>
-          <blockquote id="quote-5">“When our TTS clips kept clicking at the seams, I stopped trying to perfect the joins and padded each clip with silence instead—let the static land in the padding, then cut it off. Clean seams, no re-render.”</blockquote>
-          <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-5">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from The silence-padding trick">Back to top ↑</a></div>
+          <blockquote id="quote-5">“Our TTS has no tone controls, so I learned to direct it like a film set—stage the dramatic situation, let the model act it, then cut and glue the magic phrase into the final sentence.”</blockquote>
+          <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-5">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from The magic phrase method">Back to top ↑</a></div>
         </footer>
       </article>
 
@@ -746,6 +746,69 @@
           <div class="label">Interview version</div>
           <blockquote id="quote-7">“I turned an AI chat into a reliable cross-device task system by designing around its failure modes: stable decimal references, rules repeated in recent context, remove-not-checkmark completion, and periodic backups.”</blockquote>
           <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-7">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from The LLM-proof task protocol">Back to top ↑</a></div>
+        </footer>
+      </article>
+
+      <article class="story" data-themes="debugging audio production creativity" id="silence-padding-trick">
+        <header class="story-head">
+          <div class="story-number"><strong>08</strong>OCT<br />2026</div>
+          <div class="story-title">
+            <p class="meta">Kai Corrects LuMi · Episode 1 · TTS + ffmpeg</p>
+            <h2>The silence-padding trick</h2>
+            <p class="lede">Instead of fighting static at each audio join, the fix gave the artifact somewhere disposable to land—then cut that section away.</p>
+          </div>
+          <aside class="story-outcome" aria-label="Outcome and themes">
+            <div><span class="outcome-label">Outcome</span><div class="outcome-big">Clean seams, no re-render</div></div>
+            <div class="tags"><span class="tag">creative problem-solving</span><span class="tag">audio production</span><span class="tag">lateral thinking</span></div>
+          </aside>
+        </header>
+
+        <div class="story-visual" aria-label="Silence-padding workflow">
+          <div class="sequence">
+            <div class="seq-node"><strong>Start with TTS parts</strong><span>A long episode must be rendered in segments</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node is-accent"><strong>Add silence padding</strong><span>One second before and after each part</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Stitch as WAV</strong><span>Join artifacts land in the filler</span></div>
+            <div class="sequence-arrow" aria-hidden="true">→</div>
+            <div class="seq-node"><strong>Trim the padding</strong><span>The seam static leaves with it</span></div>
+          </div>
+        </div>
+
+        <div class="story-body">
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">S</div>
+            <div class="star-copy"><h3>Situation</h3><p>Producing Episode 1 of my AI-hosted show meant rendering a seven-minute episode through a TTS backend that could not handle it in one shot. The script had to be rendered in parts, and every stitch left clicks and static at the seam. Re-rendering the whole episode clean was not an option.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">T</div>
+            <div class="star-copy"><h3>Task</h3><p>Remove the static at the stitch joins without re-rendering every segment.</p></div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">A</div>
+            <div class="star-copy">
+              <h3>Action</h3>
+              <p>The first instinct was to make the joins themselves cleaner. I flipped the problem: if the static always landed at a join, I could give it somewhere harmless to land. I proposed padding every part with extra silence, letting the artifacts fall into that disposable filler, then trimming it away.</p>
+              <ul>
+                <li>Added one second of silence to each end of every part</li>
+                <li>Stitched the padded segments as WAV audio</li>
+                <li>Let join artifacts land inside the filler</li>
+                <li>Trimmed the added silence back out with ffmpeg</li>
+                <li>Avoided re-rendering the original TTS segments</li>
+                <li>Turned the method into a repeatable production step</li>
+              </ul>
+            </div>
+          </section>
+          <section class="star-row">
+            <div class="star-letter" aria-hidden="true">R</div>
+            <div class="star-copy"><h3>Result</h3><p>The join static disappeared exactly as designed, carried off with the trimmed filler. The episode also had a separate, deeper hiss caused by backend conditions, which was later solved with a quiet-window re-render. The padding trick still fully solved the seam problem it targeted and became the standing method for multi-part stitches on the show.</p></div>
+          </section>
+        </div>
+        <div class="interview-note"><strong>Use this story for:</strong> creative problem-solving, lateral thinking, audio production, working around tool constraints, or separating one technical problem from another.</div>
+        <footer class="quote-box">
+          <div class="label">Interview version</div>
+          <blockquote id="quote-8">“When our TTS clips kept clicking at the seams, I stopped trying to perfect the joins and padded each clip with silence instead—let the static land in the padding, then cut it off. Clean seams, no re-render.”</blockquote>
+          <div class="quote-actions"><button class="copy-button" type="button" data-copy="quote-8">Copy one-liner</button><a class="top-link" href="#top" aria-label="Back to top from The silence-padding trick">Back to top ↑</a></div>
         </footer>
       </article>
 
